@@ -1,0 +1,33 @@
+// This version utilises voltage cap. Due to safety precautions, this code is incomplete.
+
+#define TOUCHPIN A0
+
+#define RESOLUTION 100
+
+#define SMOOTH 100
+
+float multiplier = 1.2; // determen when the sensor is understood as "ON"
+int previousReadings[SMOOTH]; // smooth data a little: the last readings
+int currentIndex = 0; // used for cycling through the array
+int reading; // the latest reading
+
+const float VOLTAGE_TO_CHECK = 5.0; // set the voltage you want to check
+
+bool checkVoltage(){
+  unsigned long sum = 0;
+  for(int i = 0; i < SMOOTH; i++){
+    sum += analogRead(A0);
+    delay(10);
+  }
+  float average = (sum / (float)SMOOTH) * (5.0 / 1023.0); // convert to voltage
+  return abs(average - VOLTAGE_TO_CHECK) < 0.1; // allow a tolerance of +/- 0.1 volts
+}
+
+void setup() {
+
+}
+
+void loop() {
+
+
+}
