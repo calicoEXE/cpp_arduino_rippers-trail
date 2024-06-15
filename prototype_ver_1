@@ -1,0 +1,125 @@
+// This version uses conductive yarn material as the primary "red yarn", it uses human touch as charge to charge the LED lights.
+
+#include <ADCTouch.h> 
+
+#define TOUCHPIN A0 
+#define TOUCHPIN2 A1 
+#define TOUCHPIN3 A2  // add for more led 
+
+#define RESOLUTION 100 
+
+#define SMOOTH 100 // determine how many readings are stored for smoothing 
+float multiplier = 1.2;  // determen when the sensor is understood as "ON" 
+
+int previousReadings[SMOOTH]; // smooth data a little: the last readings 
+int previousReadings2[SMOOTH]; 
+int previousReadings3[SMOOTH]; // add for more led 
+
+int currentIndex = 0; // used for cycling through the array 
+int currentIndex2 = 0; 
+int currentIndex3 = 0; // add for more led 
+
+int reading; // the latest reading 
+int reading2; 
+int reading3; // add for more led 
+
+
+// calculate the average of the previous readings 
+int average(){ 
+	unsigned long sum = 0; 
+	for(int i = 0; i < SMOOTH; i++){ 
+		sum += previousReadings[i];
+		 } 
+		 return sum / SMOOTH;
+	} 
+	
+int average2(){ 
+	unsigned long sum2 = 0; 
+	for(int i = 0; i < SMOOTH; i++){ 
+		sum2 += previousReadings2[i];
+		 } 
+		 return sum2/ SMOOTH; 
+	} 
+	
+int average3(){ // add for more led, remove when using arduino mega 
+	unsigned long sum3 = 0;
+	 for(int i = 0; i < SMOOTH; i++){ 
+		 sum3 += previousReadings3[i]; 
+		 } 
+		 return sum3/ SMOOTH; 
+	} 
+	
+	void setup() { 
+	Serial.begin(9600); // serial communication 
+	pinMode(13,OUTPUT); 
+	pinMode(12,OUTPUT); 
+	pinMode(11,OUTPUT); // add for more led 
+	// fill the [previousReaings] array with readings 
+	for(int i = 0; i < SMOOTH; i++){ 
+		previousReadings[i] = ADCTouch.read(TOUCHPIN, RESOLUTION); 
+		previousReadings2[i] = ADCTouch.read(TOUCHPIN2, RESOLUTION); 
+		previousReadings3[i] = ADCTouch.read(TOUCHPIN3, RESOLUTION); // add for more led 
+	} 
+} 
+
+void loop() { 
+	reading = ADCTouch.read(TOUCHPIN, RESOLUTION); // read the sensor 
+	reading2 = ADCTouch.read(TOUCHPIN2, RESOLUTION); 
+	reading3 = ADCTouch.read(TOUCHPIN3, RESOLUTION); // add for more led 
+
+	Serial.print(reading); 
+	Serial.print(","); 
+	Serial.println(reading2); 
+	Serial.print(","); 
+	Serial.println(reading3); // add for more led 
+
+	// check A0 if triggered 
+	if(reading > average() * multiplier){ 
+		digitalWrite(13, HIGH); 
+	
+	}else{ 
+		digitalWrite(13, LOW); 
+		previousReadings[currentIndex] = reading; 
+
+	// set index for the next reading 
+		currentIndex++; 
+
+	// mnake sure [currentIndex] doesn't get out of bounds 
+		if(currentIndex >= SMOOTH){ 
+			currentIndex = 0; 
+		}
+	 }
+
+// check A1 if triggered 
+	if(reading2 > average2() * multiplier){ 
+		digitalWrite(12, HIGH); 
+	
+	}else{ 
+		digitalWrite(12, LOW); 
+		previousReadings2[currentIndex] = reading; 
+
+	// set index for the next reading 
+		currentIndex2++; 
+
+	// mnake sure [currentIndex] doesn't get out of bounds 
+		if(currentIndex2 >= SMOOTH){ 
+			currentIndex2 = 0; 
+		}
+	}
+
+// check A2 if triggered 
+	if(reading3 > average3() * multiplier){ 
+		digitalWrite(11, HIGH); 
+	
+	}else{ 
+		digitalWrite(11, LOW); 
+		previousReadings3[currentIndex] = reading; 
+
+	// set index for the next reading 
+		currentIndex3++; 
+
+	// mnake sure [currentIndex] doesn't get out of bounds 
+		if(currentIndex3 >= SMOOTH){ 
+			currentIndex3 = 0; 
+		}
+	}
