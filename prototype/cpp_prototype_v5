@@ -1,0 +1,54 @@
+// This code includes checking button states after x amount of time.
+
+#define ledPin 12
+#define buttonPin 4
+#define buttonPin2 5
+
+boolean ledState = LOW;
+boolean btnPressed = false;
+boolean btnPressed2 = false;
+
+unsigned long myTime;
+unsigned long myTime2;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+  pinMode(buttonPin2, INPUT);
+  digitalWrite(ledPin, LOW);
+
+  myTime = -1000000;
+  myTime2 = -1000000;
+}
+
+void loop() {
+  boolean btnState = digitalRead(buttonPin);
+  boolean btnState2 = digitalRead(buttonPin2);
+
+
+  if (btnState == HIGH){
+    btnPressed = true;
+    myTime = millis();
+    Serial.println(myTime);
+  }
+  
+  if (btnState2 == HIGH){
+    btnPressed2 = true;
+    myTime2 = millis();
+  }
+
+  if(millis() > myTime + 2000){
+    btnPressed = false;
+  }
+
+  if(millis() > myTime2 + 2000){
+    btnPressed2 = false;
+  }
+
+  if (btnPressed == true && btnPressed2 == true){
+    ledState = HIGH;
+    digitalWrite(ledPin, HIGH);
+    delay(20);
+  } 
+}
