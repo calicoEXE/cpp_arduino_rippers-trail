@@ -7,8 +7,6 @@ As the Game Designer and Arduino Programmer, I created the backend system from s
 # More info and links about the game
 Portfolio page: https://skylarrlaw.wixsite.com/gamedesign/portfolio-collections/my-portfolio/the-rippers-trail
 
-Previous code versions: https://www.notion.so/skylarlaw/Jack-the-Ripper-Arduino-Code-Repository-bcaf041f04c747f7a791e2717266c4f9
-
 Development Log: https://www.dropbox.com/scl/fi/70e9cg7e2if6kiihvid98/Devlog_The-Ripper-s-Trail.pdf?rlkey=gxviy6z0grjkhntg9b03xyjl0&st=im2bpne7&dl=0
 
 # Credit/Code Usage
