@@ -5,11 +5,11 @@ The Ripper's Trail is an Arduino-based alternative controller game that immerses
 As the Game Designer and Arduino Programmer, I created the backend system from scratch using the Arduino IDE and a library of resources available for Arduino to develop the ideal systems for running the game as designed. Additionally, I served as the Physical Board Engineer, drafting the design for the game's physical board and creating it in our university's (LCC) woodwork workshop.
 
 # More info and links about the game
-Portfolio page of this game can be found here: https://skylarrlaw.wixsite.com/gamedesign/portfolio-collections/my-portfolio/the-rippers-trail
+Portfolio page: https://skylarrlaw.wixsite.com/gamedesign/portfolio-collections/my-portfolio/the-rippers-trail
 
-Previous version codes and notes can be found here: https://www.notion.so/skylarlaw/Jack-the-Ripper-Arduino-Code-Repository-bcaf041f04c747f7a791e2717266c4f9
+Previous code versions: https://www.notion.so/skylarlaw/Jack-the-Ripper-Arduino-Code-Repository-bcaf041f04c747f7a791e2717266c4f9
 
-Development Log can be found here: https://www.dropbox.com/scl/fi/70e9cg7e2if6kiihvid98/Devlog_The-Ripper-s-Trail.pdf?rlkey=gxviy6z0grjkhntg9b03xyjl0&st=im2bpne7&dl=0
+Development Log: https://www.dropbox.com/scl/fi/70e9cg7e2if6kiihvid98/Devlog_The-Ripper-s-Trail.pdf?rlkey=gxviy6z0grjkhntg9b03xyjl0&st=im2bpne7&dl=0
 
 # Credit/Code Usage
 If you intend to utilise the codes or use this project as reference, kindly get in touch with me via email at skylarrlaw (at) gmail (dot) com. Thank you!
