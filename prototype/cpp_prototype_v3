@@ -1,0 +1,161 @@
+// This code consist of multiple versions in one. It tests between one button-single LED, two buttons-single LED, two buttons-single LED (multiple circuits) and two button-single LED (included with reset)
+
+SINGLE BUTTON-SINGLE LED ==========================================================
+
+#define ledPin 12
+#define buttonPin 4
+
+boolean ledState = LOW;
+boolean prevBtnState = LOW;
+
+void setup() {
+  pinMode( ledPin, OUTPUT );
+  pinMode( buttonPin, INPUT );
+}
+
+void loop() {
+  boolean btnState = digitalRead( buttonPin );
+
+  if ( btnState == HIGH && prevBtnState == LOW ) {
+    ledState = ! ledState;
+    delay( 20 );
+  }
+
+  digitalWrite( ledPin, ledState );
+
+  prevBtnState = btnState;
+}
+
+TWO BUTTONS-SINGLE LED ==========================================================
+
+#define ledPin 12
+#define buttonPin 4
+#define buttonPin2 5
+
+boolean ledState = LOW;
+boolean prevBtnState = LOW;
+boolean prevBtnState2 = LOW;
+
+void setup() {
+  pinMode( ledPin, OUTPUT );
+  pinMode( buttonPin, INPUT );
+  pinMode( buttonPin2, INPUT );
+}
+
+void loop() {
+  boolean btnState = digitalRead( buttonPin );
+  boolean btnState2 = digitalRead( buttonPin2 );
+
+  if ( btnState == HIGH && prevBtnState == LOW && btnState2 == HIGH && prevBtnState2 == LOW) {
+    ledState = ! ledState;
+    delay( 20 );
+  }
+
+  digitalWrite( ledPin, ledState );
+
+  prevBtnState = btnState;
+  prevBtnState = btnState2;
+}
+
+TWO BUTTONS-SINGLE LED (MULTIPLE CIRCUITS) ==========================================================
+
+#define ledPin 12
+#define buttonPin 4 
+#define buttonPin2 5
+// for circuit2
+#define ledPin2 11 
+#define buttonPin3 6 // button1
+#define buttonPin4 7 // button2
+
+boolean ledState = LOW;
+boolean prevBtnState = LOW;
+boolean prevBtnState2 = LOW;
+// for circuit2
+boolean ledState2 = LOW;
+boolean prevBtnState3 = LOW;
+boolean prevBtnState4 = LOW;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+  pinMode(buttonPin2, INPUT);
+// for circuit2
+  pinMode(ledPin2, OUTPUT);
+  pinMode(buttonPin3, INPUT);
+  pinMode(buttonPin4, INPUT);
+}
+
+void loop() {
+  boolean btnState = digitalRead(buttonPin);
+  boolean btnState2 = digitalRead(buttonPin2);
+// for circuit2
+  boolean btnState3 = digitalRead(buttonPin3);
+  boolean btnState4 = digitalRead(buttonPin4);
+
+  if (btnState == HIGH && prevBtnState == LOW && btnState2 == HIGH && prevBtnState2 == LOW) {
+    ledState = !ledState;
+    delay(20);
+  }
+// for circuit2
+  if (btnState3 == HIGH && prevBtnState3 == LOW && btnState4 == HIGH && prevBtnState4 == LOW) {
+    ledState2 = !ledState2;
+    delay(20);
+  }
+
+  digitalWrite(ledPin, ledState);
+  digitalWrite(buttonPin, ledState);
+  digitalWrite(buttonPin2, ledState);
+ // for circuit2
+  digitalWrite(ledPin2, ledState2);
+  digitalWrite(buttonPin3, ledState2);
+  digitalWrite(buttonPin4, ledState2);
+
+  prevBtnState = btnState;
+  prevBtnState2 = btnState2;
+// for circuit2
+  prevBtnState3 = btnState3;
+  prevBtnState4 = btnState4;
+
+TWO BUTTONS-SINGLE LED (MULTIPLE CIRCUITS WITH RESET) ==========================================================
+
+#define ledPin 12
+#define buttonPin 4
+#define buttonPin2 5
+#define buttonPin3 7 // reset button
+
+boolean ledState = LOW;
+boolean prevBtnState = LOW;
+boolean ledState2 = LOW; // add for B2
+boolean prevBtnState2 = LOW;
+boolean prevBtnState3 = LOW; // reset button
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+  pinMode(buttonPin2, INPUT);
+  pinMode(buttonPin3, INPUT);
+}
+
+void loop() {
+  boolean btnState = digitalRead(buttonPin);
+  boolean btnState2 = digitalRead(buttonPin2);
+  boolean btnState3 = digitalRead(buttonPin3);
+
+  if (btnState == HIGH && prevBtnState == LOW && btnState2 == HIGH && prevBtnState2 == LOW) {
+    ledState = !ledState;
+    delay(20);
+  }
+
+  if (btnState3 == HIGH && prevBtnState3 == LOW) {
+    ledState = LOW;
+    delay(20);
+  }
+
+  digitalWrite(ledPin, ledState);
+  digitalWrite(buttonPin2, ledState2);
+
+  prevBtnState = btnState;
+  prevBtnState2 = btnState2;
+  prevBtnState3 = btnState3;
+
+}
