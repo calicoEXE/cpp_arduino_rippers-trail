@@ -1,0 +1,58 @@
+// This code explores a different button pressing combination, by pressing both button simultaneously. This did not work as well, as the hardware tend to have input lag/button issues which could cause no button input.
+
+#define ledPin 12
+#define buttonPin 4
+#define buttonPin2 5
+
+boolean ledState = LOW;
+boolean prevBtnState = LOW;
+boolean prevBtnState2 = LOW;
+
+void setup() {
+  pinMode( ledPin, OUTPUT );
+  pinMode( buttonPin, INPUT );
+  pinMode( buttonPin2, INPUT );
+  digitalWrite ( ledPin, LOW );
+}
+
+void loop(){
+
+  boolean btnState2 = digitalRead( buttonPin2 );
+
+  if (btnState2 == HIGH) {    
+    digitalWrite( ledPin, HIGH);
+    delay( 20 );
+  }
+  
+}
+
+/*
+void loopOld2(){
+  boolean btnState = digitalRead( buttonPin );
+  boolean btnState2 = digitalRead( buttonPin2 );
+
+  if ( btnState == HIGH && btnState2 == HIGH) {
+    ledState = HIGH;
+    
+    digitalWrite( ledPin, ledState );
+    delay( 20 );
+  }
+  
+}*/
+
+/*void loopOld() {
+  boolean btnState = digitalRead( buttonPin );
+  boolean btnState2 = digitalRead( buttonPin2 );
+
+  if ( btnState == HIGH && prevBtnState == LOW && btnState2 == HIGH && prevBtnState2 == LOW) {
+    ledState = ! ledState;
+    delay( 20 );
+  }
+
+  
+
+  digitalWrite( ledPin, ledState );
+
+  prevBtnState = btnState;
+  prevBtnState = btnState2;
+}*/
