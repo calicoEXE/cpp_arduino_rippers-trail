@@ -1,0 +1,307 @@
+//c1 - defining led/button pins [opportunity, 2but]
+#define ledPin 22
+#define buttonPin 2
+#define buttonPin2 3
+
+//c2 [who is jtr, 3but]
+#define ledPin2 24
+#define buttonPin3 4
+#define buttonPin4 5
+#define buttonPin5 6
+
+//c3 [motive, 2but]
+#define ledPin3 26
+#define buttonPin6 7
+#define buttonPin7 8
+
+//c4 [target & victims, 2but]
+#define ledPin4 28
+#define buttonPin8 9
+#define buttonPin9 10
+
+//c5 [killing stop, 3but]
+#define ledPin5 30
+#define buttonPin10 11
+#define buttonPin11 12
+#define buttonPin12 13
+
+int C1 = 0;
+int C2 = 0;
+int C3 = 0;
+int C4 = 0;
+int C5 = 0;
+
+//c1 - boolean of led/buttonpress
+boolean ledState = LOW;
+boolean btnPressed = false;
+boolean btnPressed2 = false;
+
+//c2
+boolean ledState2 = LOW;
+boolean btnPressed3 = false;
+boolean btnPressed4 = false;
+boolean btnPressed5 = false;
+
+//c3
+boolean ledState3 = LOW;
+boolean btnPressed6 = false;
+boolean btnPressed7 = false;
+
+//c4
+boolean ledState4 = LOW;
+boolean btnPressed8 = false;
+boolean btnPressed9 = false;
+
+//c5
+boolean ledState5 = LOW;
+boolean btnPressed10 = false;
+boolean btnPressed11 = false;
+boolean btnPressed12 = false;
+
+unsigned long previousMillis = 0;        // will store last time LED was updated
+unsigned long previousMillis2 = 0;
+unsigned long previousMillis3 = 0;  
+unsigned long previousMillis4 = 0;
+unsigned long previousMillis5 = 0;  
+const long interval = 5000;
+const long interval2 = 8000;
+const long interval3 = 5000;
+const long interval4 = 5000;
+const long interval5 = 8000;
+
+void setup() {
+  Serial.begin(9600);
+//c1 - defining led/button input & output
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+  pinMode(buttonPin2, INPUT);
+  digitalWrite(ledPin, LOW);
+
+//c2
+  pinMode(ledPin2, OUTPUT);
+  pinMode(buttonPin3, INPUT);
+  pinMode(buttonPin4, INPUT);
+  pinMode(buttonPin5, INPUT);
+  digitalWrite(ledPin2, LOW);
+
+//c3
+  pinMode(ledPin3, OUTPUT);
+  pinMode(buttonPin6, INPUT);
+  pinMode(buttonPin7, INPUT);
+  digitalWrite(ledPin3, LOW);
+
+//c4
+  pinMode(ledPin4, OUTPUT);
+  pinMode(buttonPin8, INPUT);
+  pinMode(buttonPin9, INPUT);
+  digitalWrite(ledPin4, LOW);
+
+//c5
+  pinMode(ledPin5, OUTPUT);
+  pinMode(buttonPin10, INPUT);
+  pinMode(buttonPin11, INPUT);
+  pinMode(buttonPin12, INPUT);
+  digitalWrite(ledPin5, LOW);
+  
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+  unsigned long currentMillis2 = millis();
+  unsigned long currentMillis3 = millis();
+  unsigned long currentMillis4 = millis();
+  unsigned long currentMillis5 = millis();
+
+//c1 - boolean check for button
+  boolean btnState = digitalRead(buttonPin);
+  boolean btnState2 = digitalRead(buttonPin2);
+
+//c2
+  boolean btnState3 = digitalRead(buttonPin3);
+  boolean btnState4 = digitalRead(buttonPin4);
+  boolean btnState5 = digitalRead(buttonPin5);
+
+//c3
+  boolean btnState6 = digitalRead(buttonPin6);
+  boolean btnState7 = digitalRead(buttonPin7);
+
+//c4
+  boolean btnState8 = digitalRead(buttonPin8);
+  boolean btnState9 = digitalRead(buttonPin9);
+
+//c5
+  boolean btnState10 = digitalRead(buttonPin10);
+  boolean btnState11 = digitalRead(buttonPin11);
+  boolean btnState12 = digitalRead(buttonPin12);
+
+ 
+/* button checker (whether if the button works)
+Serial.print(btnState);
+Serial.print(",");
+Serial.print(btnState2);
+Serial.print(",");
+Serial.print(btnState3);
+Serial.print(",");
+Serial.print(btnState4);
+Serial.print(",");
+Serial.print(btnState5);
+Serial.print(",");
+Serial.print(btnState6);
+Serial.print(",");
+Serial.print(btnState7);
+Serial.print(",");
+Serial.print(btnState8);
+Serial.print(",");
+Serial.print(btnState9);
+Serial.print(",");
+Serial.print(btnState10);
+Serial.print(",");
+Serial.print(btnState11);
+Serial.print(",");
+Serial.println(btnState12);
+delay(100);
+*/
+
+
+// C1 (2 buttons)
+if ( btnState == HIGH && btnPressed == LOW ) {
+   C1 = C1 + 1;
+    btnPressed = true;
+  }
+
+  if ( btnState2 == HIGH && btnPressed2 == LOW ) {
+   C1 = C1 + 1;
+    btnPressed2 = true;
+  }
+  if(C1 == 2){
+    digitalWrite(ledPin, HIGH);  
+    }else{
+      digitalWrite(ledPin, LOW); 
+      // reset to base timer
+      if (currentMillis - previousMillis >= interval) {
+      previousMillis = currentMillis;  
+        C1 = 0;
+        btnPressed = false;
+        btnPressed2 = false;
+      }
+     }
+
+    //Serial.println(C1);
+    //delay(100);
+    
+// C2 (3 buttons)
+if ( btnState3 == HIGH && btnPressed3 == LOW ) {
+   C2 = C2 + 1;
+    btnPressed3 = true;
+  }
+
+  if ( btnState4 == HIGH && btnPressed4 == LOW ) {
+   C2 = C2 + 1;
+    btnPressed4 = true;
+  }
+
+    if ( btnState5 == HIGH && btnPressed5 == LOW ) {
+   C2 = C2 + 1;
+    btnPressed5 = true;
+  }
+
+  if(C2 == 3){
+    digitalWrite(ledPin2, HIGH);  
+    }else{
+      digitalWrite(ledPin2, LOW); 
+      if (currentMillis2 - previousMillis2 >= interval2) {
+      previousMillis2 = currentMillis2;  
+        C2 = 0;
+        btnPressed3 = false;
+        btnPressed4 = false;
+        btnPressed5 = false;
+      }
+     }
+
+      //Serial.println(C2);
+      //delay(100);
+
+// C3 (2 buttons)
+if ( btnState6 == HIGH && btnPressed6 == LOW ) {
+   C3 = C3 + 1;
+    btnPressed6 = true;
+  }
+
+  if ( btnState7 == HIGH && btnPressed7 == LOW ) {
+   C3 = C3 + 1;
+    btnPressed7 = true;
+  }
+  if(C3 == 2){
+    digitalWrite(ledPin3, HIGH);  
+    }else{
+      digitalWrite(ledPin3, LOW); 
+      // reset to base timer
+      if (currentMillis3 - previousMillis3 >= interval3) {
+      previousMillis3 = currentMillis3;  
+        C3 = 0;
+        btnPressed6 = false;
+        btnPressed7 = false;
+      }
+     }
+
+    //Serial.println(C3);
+    //delay(100);
+
+// C4 (2 buttons)
+if ( btnState8 == HIGH && btnPressed8 == LOW ) {
+   C4 = C4 + 1;
+    btnPressed8 = true;
+  }
+
+  if ( btnState9 == HIGH && btnPressed9 == LOW ) {
+   C4 = C4 + 1;
+    btnPressed9 = true;
+  }
+  if(C4 == 2){
+    digitalWrite(ledPin4, HIGH);  
+    }else{
+      digitalWrite(ledPin4, LOW); 
+      // reset to base timer
+      if (currentMillis4 - previousMillis4 >= interval4) {
+      previousMillis4 = currentMillis4;  
+        C4 = 0;
+        btnPressed8 = false;
+        btnPressed9 = false;
+      }
+     }
+
+    //Serial.println(C4);
+    //delay(100);
+  
+  // C5 (3 buttons)
+if ( btnState10 == HIGH && btnPressed10 == LOW ) {
+   C5 = C5 + 1;
+    btnPressed10 = true;
+  }
+
+  if ( btnState11 == HIGH && btnPressed11 == LOW ) {
+   C5 = C5 + 1;
+    btnPressed11 = true;
+  }
+
+    if ( btnState12 == HIGH && btnPressed12 == LOW ) {
+   C5 = C5 + 1;
+    btnPressed12 = true;
+  }
+
+  if(C5 == 3){
+    digitalWrite(ledPin5, HIGH);  
+    }else{
+      digitalWrite(ledPin5, LOW); 
+      if (currentMillis5 - previousMillis5 >= interval5) {
+      previousMillis5 = currentMillis5;  
+        C5 = 0;
+        btnPressed10 = false;
+        btnPressed11 = false;
+        btnPressed12 = false;
+      }
+     }
+
+      Serial.println(C5);
+      delay(100);
+}
