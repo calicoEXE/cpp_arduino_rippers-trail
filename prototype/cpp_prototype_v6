@@ -1,0 +1,298 @@
+// This code includes all circuit, before polishing to final Version 7.
+
+//c1 - defining led/button pins [opportunity, 2but]
+#define ledPin 22
+#define buttonPin 2
+#define buttonPin2 3
+
+//c2 [who is jtr, 3but]
+#define ledPin2 24
+#define buttonPin3 4
+#define buttonPin4 5
+#define buttonPin5 6
+
+//c3 [motive, 2but]
+#define ledPin3 26
+#define buttonPin6 7
+#define buttonPin7 8
+
+//c4 [target & victims, 2but]
+#define ledPin4 28
+#define buttonPin8 9
+#define buttonPin9 10
+
+//c5 [killing stop, 3but]
+#define ledPin5 30
+#define buttonPin10 11
+#define buttonPin11 12
+#define buttonPin12 13
+
+//c1 - boolean of led/buttonpress
+boolean ledState = LOW;
+boolean btnPressed = false;
+boolean btnPressed2 = false;
+
+//c2
+boolean ledState2 = LOW;
+boolean btnPressed3 = false;
+boolean btnPressed4 = false;
+boolean btnPressed5 = false;
+
+//c3
+boolean ledState3 = LOW;
+boolean btnPressed6 = false;
+boolean btnPressed7 = false;
+
+//c4
+boolean ledState4 = LOW;
+boolean btnPressed8 = false;
+boolean btnPressed9 = false;
+
+//c5
+boolean ledState5 = LOW;
+boolean btnPressed10 = false;
+boolean btnPressed11 = false;
+boolean btnPressed12 = false;
+
+//c1 - assigning time
+unsigned long myTime;
+unsigned long myTime2;
+
+//c2
+unsigned long myTime3;
+unsigned long myTime4;
+unsigned long myTime5;
+
+//c3
+unsigned long myTime6;
+unsigned long myTime7;
+
+//c4
+unsigned long myTime8;
+unsigned long myTime9;
+
+//c5
+unsigned long myTime10;
+unsigned long myTime11;
+unsigned long myTime12;
+
+void setup() {
+  Serial.begin(9600);
+//c1 - defining led/button input & output
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+  pinMode(buttonPin2, INPUT);
+  digitalWrite(ledPin, LOW);
+
+//c2
+  pinMode(ledPin2, OUTPUT);
+  pinMode(buttonPin3, INPUT);
+  pinMode(buttonPin4, INPUT);
+  pinMode(buttonPin5, INPUT);
+  digitalWrite(ledPin2, LOW);
+
+//c3
+  pinMode(ledPin3, OUTPUT);
+  pinMode(buttonPin6, INPUT);
+  pinMode(buttonPin7, INPUT);
+  digitalWrite(ledPin3, LOW);
+
+//c4
+  pinMode(ledPin4, OUTPUT);
+  pinMode(buttonPin8, INPUT);
+  pinMode(buttonPin9, INPUT);
+  digitalWrite(ledPin4, LOW);
+
+//c5
+  pinMode(ledPin5, OUTPUT);
+  pinMode(buttonPin10, INPUT);
+  pinMode(buttonPin11, INPUT);
+  pinMode(buttonPin12, INPUT);
+  digitalWrite(ledPin5, LOW);
+
+//c1 - setting time
+  myTime = -1000000;
+  myTime2 = -1000000;
+//c2
+  myTime3 = -1000000;
+  myTime4 = -1000000;
+  myTime5 = -1000000;
+//c3
+  myTime6 = -1000000;
+  myTime7 = -1000000;
+//c4
+  myTime8 = -1000000;
+  myTime9 = -1000000;
+//c5
+  myTime10 = -1000000;
+  myTime11 = -1000000;
+  myTime12 = -1000000;
+}
+
+void loop() {
+//c1 - boolean check for button
+  boolean btnState = digitalRead(buttonPin);
+  boolean btnState2 = digitalRead(buttonPin2);
+
+//c2
+  boolean btnState3 = digitalRead(buttonPin3);
+  boolean btnState4 = digitalRead(buttonPin4);
+  boolean btnState5 = digitalRead(buttonPin5);
+
+//c3
+  boolean btnState6 = digitalRead(buttonPin6);
+  boolean btnState7 = digitalRead(buttonPin7);
+
+//c4
+  boolean btnState8 = digitalRead(buttonPin8);
+  boolean btnState9 = digitalRead(buttonPin9);
+
+//c5
+  boolean btnState10 = digitalRead(buttonPin10);
+  boolean btnState11 = digitalRead(buttonPin11);
+  boolean btnState12 = digitalRead(buttonPin12);
+
+//c1 - button state check
+  if (btnState == HIGH){
+    btnPressed = true;
+    myTime = millis();
+    Serial.println(myTime);
+  }
+  
+  if (btnState2 == HIGH){
+    btnPressed2 = true;
+    myTime2 = millis();
+  }
+
+  if(millis() > myTime + 2000){
+    btnPressed = false;
+  }
+
+  if(millis() > myTime2 + 2000){
+    btnPressed2 = false;
+  }
+
+  if (btnPressed == true && btnPressed2 == true){
+    ledState = HIGH;
+    digitalWrite(ledPin, HIGH);
+    delay(20);
+
+//c2 
+  if (btnState3 == HIGH){
+    btnPressed3 = true;
+    myTime3 = millis();
+  }
+  
+  if (btnState4 == HIGH){
+    btnPressed4 = true;
+    myTime4 = millis();
+  }
+
+  if (btnState5 == HIGH){
+    btnPressed5 = true;
+    myTime5 = millis();
+  }
+
+  if(millis() > myTime3 + 3000){
+    btnPressed3 = false;
+  }
+
+  if(millis() > myTime4 + 3000){
+    btnPressed4 = false;
+  }
+
+  if(millis() > myTime5 + 3000){
+    btnPressed5 = false;
+  }
+
+  if (btnPressed3 == true && btnPressed4 == true && btnPressed5 == true){
+    ledState2 = HIGH;
+    digitalWrite(ledPin2, HIGH);
+    delay(20);
+    } 
+
+//c3
+  if (btnState6 == HIGH){
+    btnPressed6 = true;
+    myTime6 = millis();
+  }
+  
+  if (btnState7 == HIGH){
+    btnPressed7 = true;
+    myTime7 = millis();
+  }
+
+  if(millis() > myTime6 + 2000){
+    btnPressed6 = false;
+  }
+
+  if(millis() > myTime7 + 2000){
+    btnPressed7 = false;
+  }
+
+  if (btnPressed6 == true && btnPressed7 == true){
+    ledState3 = HIGH;
+    digitalWrite(ledPin3, HIGH);
+    delay(20);
+    }
+
+//c4
+  if (btnState8 == HIGH){
+    btnPressed8 = true;
+    myTime8 = millis();
+  }
+  
+  if (btnState9 == HIGH){
+    btnPressed9 = true;
+    myTime9 = millis();
+  }
+
+  if(millis() > myTime8 + 2000){
+    btnPressed8 = false;
+  }
+
+  if(millis() > myTime9 + 2000){
+    btnPressed9 = false;
+  }
+
+  if (btnPressed8 == true && btnPressed9 == true){
+    ledState4 = HIGH;
+    digitalWrite(ledPin4, HIGH);
+    delay(20);
+    }
+
+//c5
+  if (btnState10 == HIGH){
+    btnPressed10 = true;
+    myTime10 = millis();
+  }
+  
+  if (btnState11 == HIGH){
+    btnPressed11 = true;
+    myTime11 = millis();
+  }
+
+  if (btnState12 == HIGH){
+    btnPressed12 = true;
+    myTime12 = millis();
+  }
+
+  if(millis() > myTime10 + 2000){
+    btnPressed10 = false;
+  }
+
+  if(millis() > myTime11 + 2000){
+    btnPressed11 = false;
+  }
+
+  if(millis() > myTime12 + 2000){
+    btnPressed12 = false;
+  }
+
+  if (btnPressed10 == true && btnPressed11 == true && btnPressed12 == true){
+    ledState5 = HIGH;
+    digitalWrite(ledPin5, HIGH);
+    delay(20);
+    } 
+  }
+}
